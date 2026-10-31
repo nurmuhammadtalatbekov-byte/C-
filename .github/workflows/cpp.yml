@@ -1,0 +1,19 @@
+name: C++ Build & Test
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install g++
+        run: sudo apt-get update && sudo apt-get install -y g++
+      - name: Compile
+        run: g++ -std=c++17 -Wall -Wextra -O2 main.cpp -o cpp-course
+      - name: Verify
+        run: ls -la cpp-course && file cpp-course
